@@ -18,6 +18,7 @@
             let answer = Number.MIN_SAFE_INTEGER;
             let n = arr.length;
             function DFS(L, sum) {
+                if (sum > c) return; //sum이 c보다 클때 return 해서 재귀 가지치기를 막는다 -> 불필요한 동작을 제거
                 if (L === n) {
                     if (sum < c) {
                         if (sum > answer) {
@@ -34,7 +35,8 @@
             return answer;
         }
 
-        let arr = [81, 58, 40, 33, 61];
+        let arr = [81, 58, 42, 33, 61]; //답: 242
+        //let arr = [81, 58, 40, 33, 61]; //답: 240
         console.log(solution(259, arr));
     </script>
 </body>

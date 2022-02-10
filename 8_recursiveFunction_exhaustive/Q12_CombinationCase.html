@@ -13,41 +13,25 @@
     </p>
     <script>
       function solution(n, r) {
-        //값은 나오나 느림..
-        let answer = [];
-        let dy = Array.from(Array(35), () => Array(35).fill(0));
-        let cnt = 0;
-
+        //시간이 오래 걸리는 연산이라 '메모이제이션(기록)' 방식 적용
+        let answer;
+        let memo = Array.from(Array(35), () => Array(35).fill(0));
         function DFS(n, r) {
-          if (n === r) {
-            cnt++;
-            return;
-          } else if (r === 1) {
-            cnt += n;
-            return;
+          if (memo[n][r] > 0) {
+            return memo[n][r];
+          }
+          if (r === 0 || n === r) {
+            return 1;
           } else {
-            DFS(n - 1, r - 1);
-            DFS(n - 1, r);
+            return (memo[n][r] = DFS(n - 1, r - 1) + DFS(n - 1, r));
           }
         }
-        DFS(n, r);
-        return cnt;
-      }
-      /*
-      function solution(n, r) {
-        let answer = [];
-        let dy = Array.from(Array(35), () => Array(35).fill(0));
-
-        function DFS(n, r) {
-          if (dy[n][r] > 0) return dy[n][r];
-          if (n === r || r === 0) return 1;
-          else return (dy[n][r] = DFS(n - 1, r - 1) + DFS(n - 1, r));
-        }
         answer = DFS(n, r);
+        console.log(memo);
         return answer;
       }
-      */
-      console.log(solution(33, 19));
+
+      console.log(solution(5, 3));
     </script>
   </body>
 </html>

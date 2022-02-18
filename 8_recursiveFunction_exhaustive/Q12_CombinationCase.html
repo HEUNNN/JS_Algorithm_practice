@@ -13,14 +13,13 @@
     </p>
     <script>
       function solution(n, r) {
-        //시간이 오래 걸리는 연산이라 '메모이제이션(기록)' 방식 적용
         let answer;
-        let memo = Array.from(Array(35), () => Array(35).fill(0));
+        let memo = Array.from(Array(35), () => Array(35).fill(0)); //memoization
         function DFS(n, r) {
           if (memo[n][r] > 0) {
             return memo[n][r];
           }
-          if (r === 0 || n === r) {
+          if (r === 0 || r === n) {
             return 1;
           } else {
             return (memo[n][r] = DFS(n - 1, r - 1) + DFS(n - 1, r));

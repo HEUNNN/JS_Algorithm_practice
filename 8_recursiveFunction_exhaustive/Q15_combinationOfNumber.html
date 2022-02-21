@@ -23,13 +23,14 @@
               answer++;
             }
           } else {
-            for (let i = s; i < n; i++) {
+            for (let i = s; i <= n; i++) {
               //tmp[L] = i; //필요 없음
-              DFS(L + 1, i + 1, sum + arr[i]);
+              DFS(L + 1, i + 1, sum + arr[i - 1]);
+              //DFS(0,0,0)으로 초기에 호출했을때의 parameter 값에 따라 for문 조건이 달라짐
             }
           }
         }
-        DFS(0, 0, 0);
+        DFS(0, 1, 0);
         return answer;
       }
       let arr = [2, 4, 5, 8, 12];
